@@ -86,23 +86,6 @@
 // app.listen(PORT, () => {
 //   console.log(`Server is running on http://localhost:${PORT}`);
 // });
-require("dotenv").config();
-const express = require("express");
-const mongoose = require("mongoose");
-
-// const app = express();
-// const PORT = process.env.PORT || 3000;
-
-mongoose
-  .connect(process.env.MONGO_URI)
-  .then(() => {
-    console.log("DB connected");
-    app.listen(PORT, () => {
-      console.log(`Server is running on http://localhost:${PORT}`);
-    });
-  })
-  .catch((err) => console.error("Connection error:", err));
-
 ///without env
 const express = require("express");
 const mongoose = require("mongoose");
@@ -126,3 +109,4 @@ mongoose
   });
 
 // (Optional) Middleware or routes can go here
+dotenv.config();
