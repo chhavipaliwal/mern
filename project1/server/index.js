@@ -1,100 +1,128 @@
-const express = require("express");
-const bodyParser = require("body-parser");
-const cors = require("cors");
-const connectDB = require("./db");
-const User = require("./models/User");
+// const express = require("express");
+// const mongoose = require("mongoose");
+// const dotenv = require("dotenv");
+// const studentRoutes = require("./routes/studentRoutes");
+// PORT = 3000;
+// //Setup
+// dotenv.config();
 
-const port = 3000;
+// //App
+// const app = express();
+// app.use(express.json());
+
+// //Connect MongoDB
+// mongoose
+//   .connect(process.env.MONGO_URI, {
+//     useNewUrlParser: true,
+//     useUnifiedTopology: true,
+//   })
+//   .then(() => console.log("Connected to Atlas"))
+//   .catch((err) => console.log("DB Connection error"));
+
+// // const mongoose = require('mongoose');
+
+// // module.exports = Student;
+
+// // //Model
+// // const Student = mongoose.model('Student', studentSchema)
+
+// // //Create
+// // app.post('/student', async (req, res) =>{
+// //     console.log(Student, "Hitting Create from model")
+// //     try{
+// //         const student = new Student(req.body);
+// //         const saved = await student.save()
+// //         res.status(201).json(saved)
+// //     } catch (error) {
+// //         res.status(400).json({ error: err.message})
+// //     }
+
+// // })
+
+// // //read
+// // app.get('/students', async (req,res) =>{
+// //     const students = await Student.find();
+// //     res.json(students)
+// // })
+
+// // //Read by Id
+// // app.get('/students/:id', async (req,res) => {
+// //     try{
+// //         const student = await Student.findById(req.params.id);
+// //         if (!student)
+// //             return res.status(404).json({ message: 'Not found'})
+// //             res.json(student)
+
+// //     } catch (err) {
+// //         res.status(500).json({ error: err.message})
+// //     }
+// // })
+
+// // app.put('/student/:id', async (req, res) => {
+// //     try {
+// //         const update = await Student.findByIdAndUpdate(
+// //             req.params.id,
+// //             req.body,
+// //             {new: true}
+// //         );
+// //         res.json(updated)
+// //     } catch (error) {
+// //         res.status(500).json({ error: err.message})
+// //     }
+// // })
+
+// // app.delete('/student/:id', async (req, res) => {
+// //     try {
+// //         await Student.findByIdAndDelete(req.params.id);
+// //         res.json({ message: 'Student Deleted' });
+// //     } catch (error) {
+// //         res.status(500).json({ error: error.message });
+// //     }
+// // });
+
+// //Routes
+// app.use("/students", studentRoutes);
+// //server
+// app.listen(PORT, () => {
+//   console.log(`Server is running on http://localhost:${PORT}`);
+// });
+require("dotenv").config();
+const express = require("express");
+const mongoose = require("mongoose");
+
+// const app = express();
+// const PORT = process.env.PORT || 3000;
+
+mongoose
+  .connect(process.env.MONGO_URI)
+  .then(() => {
+    console.log("DB connected");
+    app.listen(PORT, () => {
+      console.log(`Server is running on http://localhost:${PORT}`);
+    });
+  })
+  .catch((err) => console.error("Connection error:", err));
+
+///without env
+const express = require("express");
+const mongoose = require("mongoose");
 
 const app = express();
+const PORT = 3000;
 
-app.use(
-  cors({
-    origin: "http://localhost:5173", // Adjust this to your frontend's URL
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true,
+// Connect to MongoDB (you can directly paste your MongoDB URI here)
+mongoose
+  .connect("mongodb://localhost:27017/myDatabase")
+  .then(() => {
+    console.log("MongoDB connected");
+
+    // Start the server only after DB is connected
+    app.listen(PORT, () => {
+      console.log(`Server running at http://localhost:${PORT}`);
+    });
   })
-);
-app.use(bodyParser.json());
-
-// Get all users
-
-app.get("/", async (req, res) => {
-  await connectDB();
-  const users = await User.find();
-
-  res.json({
-    message: "Successfully Fetched Users",
-    status: "success",
-    users: users,
+  .catch((err) => {
+    console.error("MongoDB connection failed:", err);
   });
-});
 
-// Get user by ID
-
-app.get("/:id", async (req, res) => {
-  const userId = req.params.id;
-  await connectDB();
-  const user = await User.findById(userId);
-
-  res.json({
-    message: "Successfully Fetched Users",
-    status: "success",
-    user,
-  });
-});
-
-//get user by email
-app.get("/email/:email", async (req, res) => {
-  const userId = req.params.email;
-  await connectDB();
-  const user = await User.findOne({ email: userId });
-
-  res.json({
-    message: "Successfully Fetched Users",
-    status: "success",
-    user,
-  });
-});
-
-// Create a new user
-
-app.post("/", async (req, res) => {
-  const data = req.body;
-
-  if (!data) {
-    return res.status(400).json({
-      message: "No data provided",
-      status: "error",
-    });
-  }
-
-  if (!data.email) {
-    return res.status(400).json({
-      message: "Email is required",
-      status: "error",
-    });
-  }
-
-  await connectDB();
-  // const user = new User(data);
-  // const dbUser = await user.save();
-
-  const dbUser = await User.create(data);
-
-  if (!dbUser) {
-    return res.status(500).json({
-      message: "Failed to save user",
-      status: "error",
-    });
-  }
-  res.json({
-    message: "User saved successfully",
-    status: "success",
-    user: dbUser,
-  });
-});
-
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
-});
+// (Optional) Middleware or routes can go here
