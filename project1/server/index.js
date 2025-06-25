@@ -10,8 +10,6 @@ dotenv.config();
 const app = express();
 app.use(express.json());
 
-console.log("Server is running", process.env.MONGO_URI);
-
 //Connect MongoDB
 mongoose
   .connect(process.env.MONGO_URI, {
