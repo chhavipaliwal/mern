@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const studentRoutes = require("./routes/studentRoutes");
+const Student = require("./models/student");
 PORT = 3000;
 //Setup
 dotenv.config();
@@ -19,6 +20,10 @@ mongoose
   .then(() => console.log("Connected to Atlas"))
   .catch((err) => console.log("DB Connection error", err));
 
+app.get("/", async (req, res) => {
+  const students = await Student.find();
+  res.json(students);
+});
 // const mongoose = require('mongoose');
 
 // module.exports = Student;

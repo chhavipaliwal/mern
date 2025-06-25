@@ -1,7 +1,6 @@
 const Student = require("../models/student");
 
 const createStudent = async (req, res) => {
-  console.log(Student, "Hitting Create from model");
   try {
     const student = new Student(req.body);
     const saved = await student.save();
