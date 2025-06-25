@@ -7,9 +7,10 @@ const {
   updateStudent,
   deleteStudent,
 } = require("../controllers/studentController");
-router.post("/students", createStudent);
-router.get("/students", getAllStudents);
-router.get("/students/:id", getStudentById);
-router.put("/students/:id", updateStudent);
-router.delete("/students/:id", deleteStudent);
+
+router.post("/", createStudent);
+router.get("/", getAllStudents);
+router.get("/:id", getStudentById);
+router.put("/:id", updateStudent);
+router.delete("/:id", deleteStudent);
 module.exports = router;
