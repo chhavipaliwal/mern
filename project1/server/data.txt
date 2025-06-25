@@ -5,3 +5,11 @@ Hello! I'm Kitti, a passionate web developer and tech enthusiast who loves turni
   creative problem-solving, and lifelong learning. Whether it's designing a beautiful interface
    or writing efficient logic,
  I strive to create things that matter.
+ Hello! I'm Kitti, a passionate web developer and tech enthusiast who loves turning
+ ideas into interactive and elegant digital experiences. With hands-on experience in 
+ frontend tools like React, Tailwind CSS, and backend tools like Node.js and MongoDB,
+  I enjoy building projects that are both functional and user-friendly. I believe in clean code, 
+  creative problem-solving, and lifelong learning. Whether it's designing a beautiful interface
+   or writing efficient logic,
+ I strive to create things that matter.
+ 

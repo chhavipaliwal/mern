@@ -1,4 +1,4 @@
-// jsut simply start the server not mongodb
+// just simply start the server not mongodb
 const http = require("http");
 const PORT = 3000;
 const server = http.createServer((req, res) => {
