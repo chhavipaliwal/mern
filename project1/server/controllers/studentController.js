@@ -34,11 +34,27 @@ const createStudent = async (req, res) => {
     });
 
     await student.save();
-
-    // Generate JWT token
-    const token = generateToken(student._id);
-
     res.status(201).json({ student, token });
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
+const loginStudent = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    const student = await Student.findOne({ email });
+    if (!student) {
+      return res.status(400).json({ error: "Invalid credentials" });
+    }
+    const isMatch = await bcrypt.compare(password, student.password);
+
+    if (!isMatch) {
+      return res.status(400).json({ error: "Invalid credentials" });
+    }
+
+    const token = generateToken(student._id);
+    res.json({ message: "Login Successful", token });
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
@@ -81,6 +97,7 @@ const deleteStudent = async (req, res) => {
 
 module.exports = {
   createStudent,
+  loginStudent,
   getAllStudents,
   getStudentById,
   updateStudent,
