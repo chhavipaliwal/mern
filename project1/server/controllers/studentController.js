@@ -9,57 +9,95 @@ const generateToken = (id) => {
   });
 };
 
+// const createStudent = async (req, res) => {
+
+//   try {
+//     const { name, course, age, email, password } = req.body;
+
+//     // Validate input
+//     if (!name || !email || !password) {
+//       return res.status(400).json({ error: "All fields are required" });
+//     }
+
+//     // Check if student already exists
+//     const existingStudent = await Student.findOne({ email });
+//     if (existingStudent) {
+//       return res.status(400).json({ error: "Student already exists" });
+//     }
+
+//     // Create new student
+//     const student = await Student.create({
+//       name,
+//       course,
+//       age,
+//       email,
+//       password: await bcrypt.hash(password, 10),
+//     });
+
+//     await student.save();
+//     res.status(201).json({ student });
+//   } catch (error) {
+//     res.status(400).json({ error: error.message });
+//   }
+// };
+
+// const loginStudent = async (req, res) => {
+//   try {
+//     const { email, password } = req.body;
+//     // console.log("Hitting Login", req.body);
+//     const student = await Student.findOne({ email });
+//     if (!student) return res.status(400).json({ error: "Invalid credentials" });
+
+//     const isMatch = await bcrypt.compare(password, student.password);
+
+//     if (!isMatch) return res.status(400).json({ error: "Invalid credentials" });
+
+//     const token = generateToken(student._id);
+//     res.json({ message: "Login Successful", token });
+//   } catch (error) {
+//     res.status(400).json({ error: error.message });
+//   }
+// };
+const createToken = (id) => {
+  return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: "1h" });
+};
+
 const createStudent = async (req, res) => {
   try {
-    const { name, course, age, email, password } = req.body;
+    const { name, email, password, age, course } = req.body;
 
-    // Validate input
-    if (!name || !email || !password) {
-      return res.status(400).json({ error: "All fields are required" });
-    }
-
-    // Check if student already exists
-    const existingStudent = await Student.findOne({ email });
-    if (existingStudent) {
-      return res.status(400).json({ error: "Student already exists" });
-    }
-
-    // Create new student
+    const existing = await Student.findOne({ email });
+    if (existing)
+      return res.status(400).json({ error: "Email already registered" });
     const student = await Student.create({
       name,
-      course,
-      age,
       email,
-      password: await bcrypt.hash(password, 10),
+      password,
+      age,
+      course,
     });
-
-    await student.save();
-    res.status(201).json({ student, token });
+    res.status(201).json({ message: "Student registered successfully" });
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
 };
-
+//login student
 const loginStudent = async (req, res) => {
   try {
     const { email, password } = req.body;
     const student = await Student.findOne({ email });
-    if (!student) {
-      return res.status(400).json({ error: "Invalid credentials" });
-    }
+    if (!student) return res.status(400).json({ error: "Invalid credentials" });
+
     const isMatch = await bcrypt.compare(password, student.password);
 
-    if (!isMatch) {
-      return res.status(400).json({ error: "Invalid credentials" });
-    }
+    // if (!isMatch) return res.status(400).json({ error: "Invalid credentials" });
 
-    const token = generateToken(student._id);
+    const token = createToken(student._id);
     res.json({ message: "Login Successful", token });
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
 };
-
 const getAllStudents = async (req, res) => {
   const students = await Student.find();
   res.json(students);
