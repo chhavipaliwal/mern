@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
+const bcrypt = require("bcryptjs");
 
-//Simple Schema
 const studentSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -17,5 +17,18 @@ const studentSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  password: {
+    type: String,
+    required: true,
+    minlength: [6, "Password must be at least 6 characters"],
+  },
 });
+
+studentSchema.pre("save", async function (next) {
+  if (!this.isModified("password")) return next();
+  this.password = await bcrypt.hash(this.password, 10);
+  // You can add pre-save hooks here if needed, e.g., hashing the password
+  next();
+});
+
 module.exports = mongoose.model("Student", studentSchema);

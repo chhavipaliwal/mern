@@ -6,7 +6,7 @@ const createStudent = async (req, res) => {
     const saved = await student.save();
     res.status(201).json(saved);
   } catch (error) {
-    res.status(400).json({ error: err.message });
+    res.status(400).json({ error: error.message });
   }
 };
 
