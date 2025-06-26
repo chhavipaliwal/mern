@@ -27,7 +27,6 @@ const studentSchema = new mongoose.Schema({
 studentSchema.pre("save", async function (next) {
   if (!this.isModified("password")) return next();
   this.password = await bcrypt.hash(this.password, 10);
-  // You can add pre-save hooks here if needed, e.g., hashing the password
   next();
 });
 

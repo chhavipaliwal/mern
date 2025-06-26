@@ -1,10 +1,44 @@
 const Student = require("../models/student");
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+
+//helper function to generate JWT token
+const generateToken = (id) => {
+  return jwt.sign({ id }, process.env.JWT_SECRET, {
+    expiresIn: "1h",
+  });
+};
 
 const createStudent = async (req, res) => {
   try {
-    const student = new Student(req.body);
-    const saved = await student.save();
-    res.status(201).json(saved);
+    const { name, course, age, email, password } = req.body;
+
+    // Validate input
+    if (!name || !email || !password) {
+      return res.status(400).json({ error: "All fields are required" });
+    }
+
+    // Check if student already exists
+    const existingStudent = await Student.findOne({ email });
+    if (existingStudent) {
+      return res.status(400).json({ error: "Student already exists" });
+    }
+
+    // Create new student
+    const student = await Student.create({
+      name,
+      course,
+      age,
+      email,
+      password: await bcrypt.hash(password, 10),
+    });
+
+    await student.save();
+
+    // Generate JWT token
+    const token = generateToken(student._id);
+
+    res.status(201).json({ student, token });
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
