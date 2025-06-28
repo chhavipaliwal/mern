@@ -64,15 +64,18 @@ const createToken = (id) => {
 
 const createStudent = async (req, res) => {
   try {
+    console.log("Hitting Create", req.body);
     const { name, email, password, age, course } = req.body;
 
     const existing = await Student.findOne({ email });
     if (existing)
       return res.status(400).json({ error: "Email already registered" });
+
+    const hashedPassword = await bcrypt.hash(password, 10);
     const student = await Student.create({
       name,
       email,
-      password,
+      password: hashedPassword,
       age,
       course,
     });
@@ -81,6 +84,7 @@ const createStudent = async (req, res) => {
     res.status(400).json({ error: error.message });
   }
 };
+
 //login student
 const loginStudent = async (req, res) => {
   try {
@@ -88,16 +92,21 @@ const loginStudent = async (req, res) => {
     const student = await Student.findOne({ email });
     if (!student) return res.status(400).json({ error: "Invalid credentials" });
 
+    console.log(student, "Student found");
+    console.log("Email", email, "Password", password);
+
     const isMatch = await bcrypt.compare(password, student.password);
+    console.log(isMatch, "Is Match");
 
-    // if (!isMatch) return res.status(400).json({ error: "Invalid credentials" });
+    if (!isMatch) return res.status(400).json({ error: "Invalid credentials" });
 
-    const token = createToken(student._id);
+    const token = generateToken(student._id);
     res.json({ message: "Login Successful", token });
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
 };
+
 const getAllStudents = async (req, res) => {
   const students = await Student.find();
   res.json(students);
@@ -132,6 +141,11 @@ const deleteStudent = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
+const getProfile = async (req, res) => {
+  const student = await Student.findById(req.user.id).select("-password");
+  if (!student) return res.status(404).json({ message: "Student not found" });
+  res.json({ message: "Student Profile", student });
+};
 
 module.exports = {
   createStudent,
@@ -140,4 +154,5 @@ module.exports = {
   getStudentById,
   updateStudent,
   deleteStudent,
+  getProfile,
 };
