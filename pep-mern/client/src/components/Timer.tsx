@@ -51,6 +51,7 @@ export default function Timer() {
   useEffect(() => {
     if (mode === "down") setTimeMs(countdownMins * 60 * 1000);
   }, [mode, countdownMins]);
+
   //    const [formattedTime, setFormattedTime] = useState(fmt(0));
   //   useEffect(() => {
   //     const id = setInterval(() => {
@@ -58,6 +59,7 @@ export default function Timer() {
   //     }, 1000);
   //     return () => clearInterval(id);
   //   }, [seconds]);
+
   return (
     <div className="max-w-md mx-auto mt-10 bg-white border border-gray-300 shadow-lg rounded-xl p-6 text-center space-y-6">
       {/* <h2>Elapsed Time: {seconds} seconds</h2> */}
