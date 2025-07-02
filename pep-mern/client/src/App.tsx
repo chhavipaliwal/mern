@@ -2,6 +2,7 @@ import "./App.css";
 import React, { useState, useEffect } from "react";
 //import StudentCard from "./components/StudentCard";
 import Timer from "./components/Timer";
+import ConditionalRendering from "./components/ConditionalRendering";
 
 // export default function HelloWorld() {
 //   const [count, setcount] = useState(0);
@@ -23,10 +24,11 @@ import Timer from "./components/Timer";
 export default function App() {
   return (
     <>
-      <div className="bg-gray-500 min-h-screen flex  flex-col items-center justify-center">
-        <h1 className="text-5xl font-medium">Timer</h1>
+      <div className="bg-gray-400 min-h-screen flex  flex-col items-center justify-center">
+        {/* <h1 className="text-5xl font-medium">Timer</h1> */}
         <div className="p-4 flex items-center flex-col gap-4">
-          <Timer />
+          {/* <Timer /> */}
+          <ConditionalRendering />
         </div>
       </div>
     </>
