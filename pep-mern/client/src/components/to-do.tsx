@@ -23,11 +23,14 @@ export default function ToDo() {
         />
         <button
           onClick={() => {
-            if (newTask.trim() !== "") {
-              setTasks([
-                ...tasks,
-                { id: Date.now(), text: newTask, completed: false },
-              ]);
+            if (newTask) {
+              setTasks((prevTasks) =>
+                prevTasks.concat({
+                  id: Date.now(),
+                  text: newTask,
+                  completed: false,
+                })
+              );
               setNewTask("");
             }
           }}
@@ -48,15 +51,24 @@ export default function ToDo() {
             <span
               onClick={() => {
                 setTasks(
-                  tasks.map((t) =>
-                    t.id === task.id ? { ...t, completed: !t.completed } : t
-                  )
+                  tasks.map((t) => {
+                    if (t.id === task.id) {
+                      return {
+                        id: t.id,
+                        text: t.text,
+                        completed: !t.completed,
+                      };
+                    } else {
+                      return t;
+                    }
+                  })
                 );
               }}
               className="cursor-pointer hover:text-blue-500 transition"
             >
               {task.text}
             </span>
+
             <button
               onClick={() => {
                 setTasks(tasks.filter((t) => t.id !== task.id));
