@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 //import StudentCard from "./components/StudentCard";
 import Timer from "./components/Timer";
 import ConditionalRendering from "./components/ConditionalRendering";
+import ToDo from "./components/to-do";
 
 // export default function HelloWorld() {
 //   const [count, setcount] = useState(0);
@@ -28,7 +29,8 @@ export default function App() {
         {/* <h1 className="text-5xl font-medium">Timer</h1> */}
         <div className="p-4 flex items-center flex-col gap-4">
           {/* <Timer /> */}
-          <ConditionalRendering />
+          {/* <ConditionalRendering /> */}
+          <ToDo />
         </div>
       </div>
     </>
