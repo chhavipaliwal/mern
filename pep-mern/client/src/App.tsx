@@ -1,9 +1,10 @@
 import "./App.css";
 import React, { useState, useEffect } from "react";
 //import StudentCard from "./components/StudentCard";
-import Timer from "./components/Timer";
-import ConditionalRendering from "./components/ConditionalRendering";
-import ToDo from "./components/to-do";
+// import Timer from "./components/Timer";
+// import ConditionalRendering from "./components/ConditionalRendering";
+// import ToDo from "./components/to-do";
+import Counter from "../hooks/useState";
 
 // export default function HelloWorld() {
 //   const [count, setcount] = useState(0);
@@ -22,17 +23,25 @@ import ToDo from "./components/to-do";
 //     </div>
 //   );
 // }
-export default function App() {
+// export default function App() {
+//   return (
+//     <>
+//       <div className="bg-gray-400 min-h-screen flex  flex-col items-center justify-center">
+//         {/* <h1 className="text-5xl font-medium">Timer</h1> */}
+//         <div className="p-4 flex items-center flex-col gap-4">
+//           {/* <Timer /> */}
+//           {/* <ConditionalRendering /> */}
+//           <ToDo />
+//         </div>
+//       </div>
+//     </>
+//   );
+// }
+
+export default function app() {
   return (
     <>
-      <div className="bg-gray-400 min-h-screen flex  flex-col items-center justify-center">
-        {/* <h1 className="text-5xl font-medium">Timer</h1> */}
-        <div className="p-4 flex items-center flex-col gap-4">
-          {/* <Timer /> */}
-          {/* <ConditionalRendering /> */}
-          <ToDo />
-        </div>
-      </div>
+      <Counter />
     </>
   );
 }
