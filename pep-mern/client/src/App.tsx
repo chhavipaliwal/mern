@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 //import StudentCard from "./components/StudentCard";
 // import Timer from "./components/Timer";
 // import ConditionalRendering from "./components/ConditionalRendering";
-// import ToDo from "./components/to-do";
+import ToDo from "./components/to-do";
 import Counter from "../hooks/useState";
 import Posts from "../hooks/useEffect";
 import Layout from "../hooks/useLayoutEffect";
@@ -33,7 +33,9 @@ import Layout from "../hooks/useLayoutEffect";
 //         <div className="p-4 flex items-center flex-col gap-4">
 //           {/* <Timer /> */}
 //           {/* <ConditionalRendering /> */}
-//           <ToDo />
+{
+  /* <ToDo />; */
+}
 //         </div>
 //       </div>
 //     </>
@@ -45,7 +47,7 @@ export default function app() {
     <>
       {/* <Counter /> */}
       {/* <Posts /> */}
-      {/* <Layout /> */}
+      <Layout />
     </>
   );
 }
