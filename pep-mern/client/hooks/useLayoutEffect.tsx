@@ -6,9 +6,13 @@ export default function Layout() {
   useLayoutEffect(() => {
     document.body.style.backgroundColor = color;
   }, [color]);
-  const changeColor = () => {
-    setColor(color === "aqua" ? "lightcoral" : "aqua");
-  };
 
-  return <></>;
+  return (
+    <>
+      <h2>current background:{color}</h2>
+      <button onClick={() => setColor("aqua")}>Aqua</button>
+      <button onClick={() => setColor("blue")}>Blue</button>
+      <button onClick={() => setColor("green")}>Green</button>
+    </>
+  );
 }

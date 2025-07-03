@@ -45,7 +45,7 @@ export default function app() {
     <>
       {/* <Counter /> */}
       {/* <Posts /> */}
-      <Layout />
+      {/* <Layout /> */}
     </>
   );
 }
