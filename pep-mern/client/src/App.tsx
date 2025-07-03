@@ -5,6 +5,8 @@ import React, { useState, useEffect } from "react";
 // import ConditionalRendering from "./components/ConditionalRendering";
 // import ToDo from "./components/to-do";
 import Counter from "../hooks/useState";
+import Posts from "../hooks/useEffect";
+import Layout from "../hooks/useLayoutEffect";
 
 // export default function HelloWorld() {
 //   const [count, setcount] = useState(0);
@@ -41,7 +43,9 @@ import Counter from "../hooks/useState";
 export default function app() {
   return (
     <>
-      <Counter />
+      {/* <Counter /> */}
+      {/* <Posts /> */}
+      <Layout />
     </>
   );
 }
