@@ -13,7 +13,10 @@ function App() {
       {/* <Layout /> */}
       {/*  the line below to use the Counter component */}
       {/* <Counter /> */}
-      <Memory />
+
+      <div className="bg-gray-500 text-black text-xl ">
+        <Memory />
+      </div>
     </>
   );
 }

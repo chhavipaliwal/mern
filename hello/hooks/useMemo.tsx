@@ -1,10 +1,10 @@
 import { useState, useMemo } from "react";
 
 export default function Memory() {
-  const [cart, setCart] = useState([
-    { id: 1, name: "Apple", price: 1.2 },
-    { id: 2, name: "Banana", price: 0.8 },
-    { id: 3, name: "Cherry", price: 2.5 },
+  const [cart] = useState([
+    { id: 1, name: "Apple", price: 3000 },
+    { id: 2, name: "Banana", price: 8000 },
+    { id: 3, name: "Cherry", price: 2500 },
   ]);
   const [discount, setDiscount] = useState(0);
   const totalPrice = useMemo(() => {
@@ -14,17 +14,20 @@ export default function Memory() {
 
   return (
     <>
-      <div className="bg-gray-100 flex justify center items-center ">
+      <div className="bg-gray-500 flex flex-col justify-center items-center text-black h-screen ">
         <h1 className="text-2xl font-bold">UseMemo Example</h1>
         <h2>Shopping Cart</h2>
         {cart.map((item) => (
-          <div key={item.id}>
-            {item.name} - ${item.price.toFixed(2)}
-          </div>
+          <p key={item.id}>
+            {item.name} :${item.price}
+          </p>
         ))}
-        <h3>Total Price: ${totalPrice.toFixed(2)}</h3>
-        <button onClick={() => setDiscount(discount + 10)}>
-          Apply 10% Discount
+        <h3>Total Price: ${totalPrice}</h3>
+        <button
+          onClick={() => setDiscount(discount + 10)}
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded "
+        >
+          Apply Discount (${discount})
         </button>
       </div>
     </>
