@@ -5,7 +5,7 @@ export default function ToDo() {
     { id: 1, text: "Task 1", completed: false },
     { id: 2, text: "Task 2", completed: false },
   ]);
-  const [newTask, setNewTask] = useState("");
+  const [newTask, setNewTask] = useState(" ");
 
   return (
     <div className="max-w-md mx-auto mt-10 bg-white shadow-md rounded-xl p-6">
