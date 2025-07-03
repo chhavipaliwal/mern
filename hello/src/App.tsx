@@ -3,7 +3,8 @@ import "./App.css";
 // import Posts from "../hooks/useEffect";
 //import Layout from "../hooks/useLayoutEffect";
 //import Counter from "../hooks/useReducer/useReducer";
-import Memory from "../hooks/useMemo";
+// import Memory from "../hooks/useMemo";
+import App2 from "./app2";
 
 function App() {
   return (
@@ -14,9 +15,10 @@ function App() {
       {/*  the line below to use the Counter component */}
       {/* <Counter /> */}
 
-      <div className="bg-gray-500 text-black text-xl ">
+      {/* <div className="bg-gray-500 text-black text-xl ">
         <Memory />
-      </div>
+      </div> */}
+      <App2 />
     </>
   );
 }
