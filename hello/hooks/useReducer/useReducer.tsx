@@ -1,4 +1,4 @@
-import { useReducer } from "react";
+import React, { useReducer } from "react";
 import counterReducer from "./counterReducer";
 
 const Counter = () => {

@@ -2,7 +2,7 @@ import "./App.css";
 // import Counter from "../hooks/useState";
 // import Posts from "../hooks/useEffect";
 //import Layout from "../hooks/useLayoutEffect";
-import Counter from "../hooks/useReducer/useReducer";
+//import Counter from "../hooks/useReducer/useReducer";
 
 function App() {
   return (
@@ -10,7 +10,8 @@ function App() {
       {/* <Counter /> */}
       {/* <Posts /> */}
       {/* <Layout /> */}
-      <Counter />
+      {/* //useReducer */}
+      {/* <Counter /> */}
     </>
   );
 }
