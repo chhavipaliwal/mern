@@ -4,7 +4,7 @@ import "./App.css";
 //import Layout from "../hooks/useLayoutEffect";
 //import Counter from "../hooks/useReducer/useReducer";
 // import Memory from "../hooks/useMemo";
-import App2 from "./app2";
+// import App2 from "./app2";
 
 function App() {
   return (
@@ -18,7 +18,7 @@ function App() {
       {/* <div className="bg-gray-500 text-black text-xl ">
         <Memory />
       </div> */}
-      <App2 />
+      {/* <App2 /> */}
     </>
   );
 }
