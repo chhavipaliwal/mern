@@ -1,4 +1,4 @@
-import Button from "../hooks/useCallback";
+import Button from "./useCallback";
 import { useState, useCallback } from "react";
 
 const App2 = () => {

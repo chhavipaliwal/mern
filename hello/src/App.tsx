@@ -1,4 +1,5 @@
 import "./App.css";
+import Home from "./components/Home/Home";
 // import Counter from "../hooks/useState";
 // import Posts from "../hooks/useEffect";
 //import Layout from "../hooks/useLayoutEffect";
@@ -19,6 +20,7 @@ function App() {
         <Memory />
       </div> */}
       {/* <App2 /> */}
+      <Home />
     </>
   );
 }
