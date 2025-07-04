@@ -8,7 +8,9 @@ export default function Home() {
           <div className="max-w-xl sm:mt-1 mt-80 space-y-8 text-center sm:text-right sm:ml-auto">
             <h2 className="text-4xl font-bold sm:text-5xl">
               Download Now
-              <span className="hidden sm:block text-4xl">Lorem Ipsum</span>
+              <span className="hidden sm:block text-4xl text-blue-500">
+                Game of Thrones
+              </span>
             </h2>
             <div className="text-lg sm:text-xl font-medium text-gray-600 flex justify-center sm:justify-end">
               <Link
@@ -30,17 +32,16 @@ export default function Home() {
             </div>
           </div>
         </div>
-
         <div className="absolute inset-0 w-full sm:my-20 sm:pt-1 h-full">
-          <img className="w-96" src="/image copy.png" alt="image1" />
-        </div>
-
-        <div className="grid place-items-center">
           <img className="sm:w-96 w-48" src="/image copy 2.png" alt="image2" />
 
           <h1 className="text-end text-2xl sm:text-5xl py-10 font-medium">
-            Lorem Ipsum Yojo
+            Game of Thrones
           </h1>
+        </div>
+
+        <div className="grid place-items-center">
+          <img className="w-96" src="/image copy.png" alt="image1" />
         </div>
       </aside>
     </div>
