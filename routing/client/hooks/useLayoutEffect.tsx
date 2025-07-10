@@ -1,4 +1,4 @@
-import React, { useState, useLayoutEffect, use } from "react";
+import { useState, useLayoutEffect } from "react";
 
 export default function Layout() {
   const [color, setColor] = useState("aqua");
