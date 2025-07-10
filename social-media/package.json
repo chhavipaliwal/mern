@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@iconify/react": "^6.0.0",
     "axios": "^1.10.0",
     "iconify": "^1.4.0",
     "react": "^19.1.0",
